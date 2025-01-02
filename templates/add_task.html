@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add Task</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group" style="padding: 20px;">
+        <label for="title">{{ form.title.label }}</label>
+        <input type="text" id="title" name="title" class="custom-input-class" value="{{ form.title.data }}" placeholder="Enter task title">
+    </div>
+
+    <div class="form-group" style="padding: auto;">
+        <label for="description">{{ form.description.label }}</label>
+        <textarea id="description" name="description" class="custom-textarea-class" placeholder="Enter task description">{{ form.description.data }}</textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary">Add Task</button>
+    
+</form>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>My To-Do List</h1>
+<a href="{{ url_for('add_task') }}">Add Task</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Task ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">update</th>
+            <th scope="col">delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>
+                {% if task.completed %}
+                    <span class="badge bg-success">Completed</span>
+                {% else %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                {% endif %}
+            </td>
+            <td><a type="button" class="btn btn-outline-secondary btn-sm" href="/edit/{{task.id}}">Edit</a></td>
+            <td><a type="button" class="btn btn-outline-danger btn-sm" href="/delete/{{task.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
